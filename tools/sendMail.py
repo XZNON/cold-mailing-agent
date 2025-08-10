@@ -7,10 +7,8 @@ import os
 
 load_dotenv()
 
-SENDER = os.getenv("SENDERS_MAIL")
-PASS = os.getenv("APP_PASS")
-
-# llm = GoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.2)
+SENDER = os.getenv("SENDERS_MAIL","").strip()
+PASS = os.getenv("APP_PASS","").strip()
 
 @tool
 def readExcel():
@@ -23,18 +21,17 @@ def readExcel():
 
 
 @tool
-def send_mail(name : str,recieverMail : str, title: str, company:str,job_role : str = "Software developer"):
+def send_mail(recieverMail : str, title: str, company:str,job_role : str = "Software developer"):
     '''
     This tools gets the name,recievers mail the content of the mail, and sends the mail to the reciever.
     '''
     reciever = recieverMail
-    body = generateContent()   #add params
+    body = generateContent(company,title,job_role)   #add params
 
     yg = yagmail.SMTP(SENDER,PASS)
     yg.send(
         to  = recieverMail,
         subject = f"Seeking a job as {job_role} at your company",
-        contents=body
+        contents=body,
+        attachments="Shivalik_Singh_AI_ML.pdf"
     )
-
-print(readExcel.invoke({}))
