@@ -1,6 +1,6 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
-from initiation import model,parser
+from config.initiation import model,parser
 from dotenv import load_dotenv
 
 

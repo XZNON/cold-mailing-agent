@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from initiation import model,parser
-from generateSummary import genereateSummary,toTxt
+from config.initiation import model,parser
+from config.generateSummary import genereateSummary,toTxt
 import os
 
 load_dotenv()
