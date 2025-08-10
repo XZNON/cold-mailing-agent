@@ -1,14 +1,35 @@
-from langchain_google_genai import GoogleGenerativeAI
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from initiation import model,parser
+from generateSummary import genereateSummary,toTxt
+import os
 
 load_dotenv()
 
-model = GoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.2)
-parser = StrOutputParser()
+resume = "resume.txt"
+resumeSummary = "resumeSummary.txt"
 
-def generateContent(company_name : str,title:str,job_role:str,resume_summary : str):
+if os.path.exists(resume) and not os.path.exists(resumeSummary):
+    try:
+        genereateSummary()
+    except Exception as e:
+        print("Error while generating summary in generateMail.py" , e)
+
+if not os.path.exists(resume) and not os.path.exists(resumeSummary):
+    try:
+        toTxt()
+        genereateSummary()
+    except Exception as e:
+        print("Error while converting to text and/or generating summary in generateMail.py" , e)
+
+#fetch the resume summary if it exists already
+resumeSummary = ""
+with open("resumeSummary.txt","r") as f:
+    data = f.read()
+    resumeSummary += data
+
+#generate the mail body
+def generateContent(company_name : str,title:str,job_role:str,resume_summary = resumeSummary):
     prompt1 = PromptTemplate(
     template=(
         "You are an experienced job applicant. "
@@ -29,3 +50,5 @@ def generateContent(company_name : str,title:str,job_role:str,resume_summary : s
     content = chain.invoke({"company_name":company_name,"title":title,"job_role":job_role,"resume_summary":resume_summary})
 
     return content
+
+# print(generateContent("microsoft","hr","SDE-1"))
