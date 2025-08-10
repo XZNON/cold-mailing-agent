@@ -25,13 +25,17 @@ def send_mail(recieverMail : str, title: str, company:str,job_role : str = "Soft
     '''
     This tools gets the name,recievers mail the content of the mail, and sends the mail to the reciever.
     '''
-    reciever = recieverMail
     body = generateContent(company,title,job_role)   #add params
 
     yg = yagmail.SMTP(SENDER,PASS)
-    yg.send(
-        to  = recieverMail,
-        subject = f"Seeking a job as {job_role} at your company",
-        contents=body,
-        attachments="Shivalik_Singh_AI_ML.pdf"
-    )
+
+    try:
+        yg.send(
+            to  = recieverMail,
+            subject = f"Seeking a job as {job_role} at your company",
+            contents=body,
+            attachments="Shivalik_Singh_AI_ML.pdf"
+        )
+    except Exception as e:
+        print("error while seinding the mail: ", e)
+
