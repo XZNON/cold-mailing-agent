@@ -6,30 +6,15 @@ import os
 
 load_dotenv()
 
-resume = "resume.txt"
-resumeSummary = "resumeSummary.txt"
-
-if os.path.exists(resume) and not os.path.exists(resumeSummary):
-    try:
-        genereateSummary()
-    except Exception as e:
-        print("Error while generating summary in generateMail.py" , e)
-
-if not os.path.exists(resume) and not os.path.exists(resumeSummary):
-    try:
-        toTxt()
-        genereateSummary()
-    except Exception as e:
-        print("Error while converting to text and/or generating summary in generateMail.py" , e)
-
-#fetch the resume summary if it exists already
-resumeSummary = ""
-with open("resumeSummary.txt","r") as f:
-    data = f.read()
-    resumeSummary += data
 
 #generate the mail body
-def generateContent(company_name : str,title:str,job_role:str,resume_summary = resumeSummary):
+def generateContent(company_name : str,title:str,job_role:str,resume_path :str):
+    resume_summary = "resumeSummary.txt"
+    if not os.path.exists(resume_summary):
+        toTxt(resume_path)
+        genereateSummary()
+
+
     prompt1 = PromptTemplate(
     template=(
         "You are an experienced job applicant. "

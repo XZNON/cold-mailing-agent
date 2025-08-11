@@ -2,16 +2,16 @@ from langchain_core.prompts import PromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from config.initiation import model,parser
 from dotenv import load_dotenv
+import os
+import shutil
 
 
 load_dotenv()
 
-resume = 'resume.txt'
-summary = 'resumeSummary.txt'
-
 #convert pdf to str
-def toTxt():
-    loader = PyPDFLoader("Shivalik_Singh_AI_ML.pdf")    #add the resume of the
+def toTxt(resume_path : str):
+    # resume_path = os.environ[""]
+    loader = PyPDFLoader(resume_path)    #add the resume of the
     pages = []
 
     try :
@@ -62,3 +62,7 @@ def genereateSummary():
             f.write(content)
     except Exception as e:
         print("Error while creating resume summary text file", e)
+
+def deleteFiles() -> None:
+    os.remove("resumeSummary.txt")
+    os.remove("resume.txt")
