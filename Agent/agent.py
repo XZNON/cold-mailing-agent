@@ -22,7 +22,10 @@ prompt = ChatPromptTemplate.from_messages([
     ("assistant", "{agent_scratchpad}")
 ])
 
-agent = create_tool_calling_agent(model,tools,prompt)
+try:
+    agent = create_tool_calling_agent(model,tools,prompt)
+except Exception as e:
+    print(f"Error while creating agent : {e}")
 
 agent_executor  = AgentExecutor(
     agent=agent,
@@ -30,4 +33,3 @@ agent_executor  = AgentExecutor(
     verbose= True
 ) 
 
-agent_executor.invoke({"input":"Send the emails from the excel file"})

@@ -9,14 +9,19 @@ load_dotenv()
 
 SENDER = os.getenv("SENDERS_MAIL","").strip()
 PASS = os.getenv("APP_PASS","").strip()
+EXCEL_FILE_PATH = os.getenv("temp_demo.xlsx")
 
 @tool
-def readExcel():
+def readExcel(file_path : str):
     '''
     This tools reads the excel file and takes the name, email,company name, title 
     and sends it to the next tool.
     '''
-    df = pd.read_excel("demo.xlsx")
+    if not file_path or not os.path.exists(file_path):
+        return "Excel file path not found"
+    
+
+    df = pd.read_excel(file_path)
     return df.to_dict(orient='records')
 
 

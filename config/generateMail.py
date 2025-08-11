@@ -40,7 +40,6 @@ def generateContent(company_name : str,title:str,job_role:str,resume_summary = r
         "Use HTML formatting for readability, with short paragraphs and bullet points where relevant. "
         "The tone should be formal, confident, and polite. "
         "Do NOT include greetings (like 'Dear...') or signatures — only the main body content inside <p> or <ul>/<li> tags."
-        "Make it brief but discriptive, around 50-125 words."
     ),
     input_variables=['company_name', 'title', 'job_role', 'resume_summary']
     )
