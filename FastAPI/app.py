@@ -3,9 +3,18 @@ from fastapi.responses import JSONResponse
 import shutil
 import os
 from Agent.agent import agent_executor
-# from Agent.agent import agent_executor
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # change to your frontend URL in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def home():

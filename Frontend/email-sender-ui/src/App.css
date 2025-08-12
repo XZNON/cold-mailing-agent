@@ -1,0 +1,245 @@
+/* === Import a Google Font for a more modern typeface === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* === CSS Variables for Easy Theme Management === */
+:root {
+    --primary-color: #00796b;      /* A deep, elegant teal */
+    --primary-hover-color: #004d40; /* Darker teal for hover */
+    --background-color: #f0f2f5;   /* A light, cool gray background */
+    --container-color: #ffffff;    /* White for the main form card */
+    --text-color: #333333;         /* Dark gray for main text */
+    --label-color: #555555;        /* Lighter gray for labels */
+    --border-color: #dbe2e8;       /* A subtle border color */
+    --success-bg: #e0f2f1;         /* Light teal background for success messages */
+    --success-text: #004d40;       /* Dark teal text for success messages */
+    --error-bg: #ffebee;           /* Light pink background for errors */
+    --error-text: #c62828;         /* Dark red text for errors */
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07); /* A softer, more pronounced shadow */
+}
+
+/* === General Body and Font Styling === */
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* === Main Application Container Styling === */
+.container {
+    background-color: var(--container-color);
+    padding: 2.5rem 3.5rem;
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* === Header Styling === */
+h1 {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* === Form Element Grouping === */
+.form-group {
+    margin-bottom: 1.75rem;
+    text-align: left;
+}
+
+/* === Label Styling === */
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--label-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* === General Input Styling (Text & File) === */
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.2);
+}
+
+/* === Custom Styling for the File Input Button === */
+input[type="file"] {
+    padding: 0.25rem;
+}
+input[type="file"]::file-selector-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+
+/* === Submit Button Styling === */
+button {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(90deg, #00796b, #004d40); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 121, 107, 0.3);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 121, 107, 0.4);
+}
+
+button:disabled {
+    background: #9e9e9e;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* === Feedback Message Styling (Success/Error) === */
+#message {
+    margin-top: 1.5rem;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.success {
+    color: var(--success-text);
+    background-color: var(--success-bg);
+    border-color: var(--success-text);
+}
+
+.error {
+    color: var(--error-text);
+    background-color: var(--error-bg);
+    border-color: var(--error-text);
+}
+
+/* === Loading Spinner Styling === */
+.spinner {
+    display: block;
+    margin: 1.5rem auto 0;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color); /* Matches the theme */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === Minigame Styles (Whack-a-Mole) === */
+.minigame-container {
+    padding: 1rem 0 2rem 0;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.minigame-container h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.score-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.whack-a-mole-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #a58a70; /* Soil color */
+    border: 10px solid #846a55;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.hole {
+    background-color: #5d4037; /* Darker soil for hole */
+    border-radius: 50%;
+    overflow: hidden; /* Important to contain the mole */
+    position: relative;
+    box-shadow: inset 0px 5px 10px rgba(0,0,0,0.4);
+}
+
+.mole {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem; /* Adjust emoji size */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="%23d9534f" d="M14.243 13.536l-1.414 1.414-2.829-2.829-1.414 1.414-2.121-2.121 1.414-1.414 2.829 2.829 1.414-1.414 2.121 2.121zm-1.414-8.485l-2.121 2.121 1.414 1.414 2.829-2.829 1.414 1.414 2.121-2.121-1.414-1.414-2.829 2.829zM3 18h18v-2H3v2z"/></svg>'), auto;
+    user-select: none; /* Prevents text selection on rapid clicks */
+    animation: pop-up 0.2s ease-out;
+}
+
+.final-score {
+    display: block;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+/* === Animation Keyframes === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop-up {
+    from { transform: translateX(-50%) translateY(100%); }
+    to { transform: translateX(-50%) translateY(0); }
+}
