@@ -89,7 +89,6 @@ Install the required Python packages:
     pip install -r requirements.txt
 
 Set up your environment variables. Create a .env file in the root directory and add your API keys:
-Code snippet
 
     OPENAI_API_KEY="your_openai_api_key_here"
     EMAIL_HOST_USER="your_email@example.com"
@@ -98,12 +97,10 @@ Code snippet
 Setup the Frontend (React)
 
 Navigate to the frontend directory:
-Bash
 
     cd email-sender-ui 
 
 Install npm packages:
-Bash
 
         npm install
 
@@ -121,7 +118,6 @@ From the root directory, run Uvicorn:
 Start the Frontend Application
 
 In a new terminal, from the email-sender-ui directory, run:
-Bash
 
         npm start
   The application will open automatically in your browser at http://localhost:3000.
